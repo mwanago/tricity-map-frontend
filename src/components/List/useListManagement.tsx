@@ -3,15 +3,19 @@ import { AppState } from '../../store/reducers';
 import { useMemo } from 'react';
 
 function useCarsListManagement() {
-  const { carsDictionary, isLoading } = useSelector((state: AppState) => ({
+  const { carsDictionary, isLoading, searchValue } = useSelector((state: AppState) => ({
     carsDictionary: state.cars.entities,
     isLoading: state.cars.isLoading,
+    searchValue: state.search.value,
   }));
   const cars = useMemo(
     () => {
-      return Object.values(carsDictionary);
+      const array = Object.values(carsDictionary);
+      return searchValue ? array.filter(
+        car => !searchValue || car.driverName.toLowerCase().includes(searchValue),
+      ) : array;
     },
-    [carsDictionary],
+    [carsDictionary, searchValue],
   );
   return {
     isLoading,
