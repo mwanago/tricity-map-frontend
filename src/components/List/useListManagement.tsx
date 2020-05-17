@@ -3,8 +3,9 @@ import { AppState } from '../../store/reducers';
 import { useMemo } from 'react';
 
 function useCarsListManagement() {
-  const { carsDictionary } = useSelector((state: AppState) => ({
+  const { carsDictionary, isLoading } = useSelector((state: AppState) => ({
     carsDictionary: state.cars.entities,
+    isLoading: state.cars.isLoading,
   }));
   const cars = useMemo(
     () => {
@@ -13,6 +14,7 @@ function useCarsListManagement() {
     [carsDictionary],
   );
   return {
+    isLoading,
     cars,
   };
 }

@@ -2,6 +2,7 @@ import React from 'react';
 import 'leaflet/dist/leaflet.css';
 import { Map as LeafletMap, TileLayer } from 'react-leaflet';
 import styles from './styles.module.scss';
+import Cluster from './Cluster';
 
 const Map = () => {
   return (
@@ -19,6 +20,7 @@ const Map = () => {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
       />
+      <Cluster />
     </LeafletMap>
   );
 };
