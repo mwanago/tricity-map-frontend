@@ -1,0 +1,12 @@
+.wrapper {
+  max-height: 100vh;
+  width: 300px;
+  font-family: 'Roboto', 'serif';
+  display: flex;
+  flex-direction: column;
+  .list {
+    padding: 20px;
+    flex-grow: 1;
+    overflow-y: scroll;
+  }
+}
