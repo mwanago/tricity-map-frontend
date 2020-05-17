@@ -30,6 +30,19 @@ function useCarsMarkers() {
                 }
               });
             }
+            case 'Search.SetValue': {
+              const cars = Object.values(store.getState().cars.entities);
+              const searchValue = action.payload.value;
+              markers.clear();
+              cars.forEach((car) => {
+                if (car.driverName.toLowerCase().includes(searchValue)) {
+                  markers.set(Number(car.id), (
+                    marker([car.currentLocation.latitude, car.currentLocation.longitude])
+                      .bindPopup(car.driverName)
+                  ));
+                }
+              });
+            }
           }
         },
       );
