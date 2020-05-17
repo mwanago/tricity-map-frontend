@@ -11,11 +11,7 @@ const carSocketMiddleware = (): Middleware => {
       store.dispatch(carsActions.receiveList(cars));
     });
     socket.on(SocketEvents.MovementData, (cars: Car[]) => {
-      console.log('update came', cars.length);
       store.dispatch(carsActions.receiveUpdate(cars));
-    });
-    socket.on('connect', () => {
-      console.log('connected');
     });
     return next => (action) => {
       return next(action);
